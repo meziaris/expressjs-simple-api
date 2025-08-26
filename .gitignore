@@ -27,6 +27,7 @@ Temporary Items
 # Node
 dist/
 node_modules/
+.env
 .env.*
 !.env.example
 
