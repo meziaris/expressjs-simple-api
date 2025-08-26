@@ -1,0 +1,21 @@
+services:
+  postgres:
+    container_name: expressjs-simple-api-postgres
+    image: postgres:17
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-postgres}
+    volumes:
+      - expressjs-simple-api-pg-data:/var/lib/postgresql/data
+    networks:
+      - expressjs-simple-api
+
+volumes:
+  expressjs-simple-api-pg-data:
+
+networks:
+  expressjs-simple-api:
+    driver: bridge
