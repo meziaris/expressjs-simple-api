@@ -1,0 +1,12 @@
+import express from "express";
+import { DepartmentController } from "../controller/department.controller.js";
+import { ErrorMiddleware } from "../middleware/error.middleware.js";
+import { UserController } from "../controller/user.controller.js";
+
+export const app = express();
+app.use(express.json());
+
+app.post("/departments", DepartmentController.register);
+app.post("/users", UserController.register);
+
+app.use(ErrorMiddleware);

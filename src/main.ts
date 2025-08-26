@@ -1,7 +1,5 @@
-import express from "express";
+import { app } from "./application/app.js";
 import config from "./config/config.js";
-
-const app = express();
 
 const PORT = config.port;
 
