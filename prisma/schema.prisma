@@ -1,0 +1,57 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Department {
+  id        String   @id @default(uuid()) @map("id")
+  name      String   @map("name") @db.VarChar(100)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  users     User[]
+
+  @@map("departments")
+}
+
+enum UserStatus {
+  ACTIVE   @map("active")
+  INACTIVE @map("inactive")
+}
+
+model User {
+  id           String     @id @default(uuid()) @map("id")
+  email        String     @unique @map("email") @db.VarChar(100)
+  name         String     @map("name") @db.VarChar(100)
+  phone        String     @map("phone") @db.VarChar(100)
+  password     String     @map("password") @db.VarChar(100)
+  status       UserStatus @map("status")
+  departmentId String     @map("department_id")
+  createdAt    DateTime   @default(now()) @map("created_at")
+  updatedAt    DateTime   @updatedAt @map("updated_at")
+
+  department Department @relation(fields: [departmentId], references: [id])
+  addresses  Address[]
+
+  @@map("users")
+}
+
+model Address {
+  id         String   @id @default(uuid()) @map("id")
+  userId     String   @map("user_id")
+  street     String?  @map("street") @db.VarChar(100)
+  city       String?  @map("city") @db.VarChar(100)
+  state      String?  @map("state") @db.VarChar(100)
+  country    String   @map("country") @db.VarChar(100)
+  postalCode String   @map("postal_code") @db.VarChar(10)
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("addresses")
+}

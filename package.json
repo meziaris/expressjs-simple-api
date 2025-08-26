@@ -23,6 +23,7 @@
   "license": "ISC",
   "packageManager": "pnpm@10.15.0",
   "dependencies": {
+    "@prisma/client": "6.14.0",
     "express": "^5.1.0"
   },
   "devDependencies": {
@@ -32,6 +33,7 @@
     "eslint": "^9.34.0",
     "globals": "^16.3.0",
     "jiti": "^2.5.1",
+    "prisma": "^6.14.0",
     "tsx": "^4.20.5",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.41.0"
