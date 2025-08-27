@@ -20,6 +20,20 @@ export type UserRequest = {
   departmentId: string;
 };
 
+export type UserUpdate = {
+  id: string;
+  email?: string | undefined;
+  name?: string | undefined;
+  phone?: string | undefined;
+  password?: string | undefined;
+  status?: "ACTIVE" | "INACTIVE" | undefined;
+  departmentId?: string | undefined;
+};
+
+export type UserDelete = {
+  id: string;
+};
+
 export function toUserResponse(user: User): UserResponse {
   return {
     id: user.id,
