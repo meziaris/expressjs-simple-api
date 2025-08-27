@@ -1,6 +1,7 @@
 import type { User } from "@prisma/client";
 
 export type UserResponse = {
+  id: string;
   email: string;
   name: string;
   phone: string;
@@ -21,6 +22,7 @@ export type UserRequest = {
 
 export function toUserResponse(user: User): UserResponse {
   return {
+    id: user.id,
     email: user.email,
     name: user.name,
     phone: user.phone,
