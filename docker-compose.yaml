@@ -13,6 +13,20 @@ services:
     networks:
       - expressjs-simple-api
 
+  app:
+    container_name: expressjs-simple-api-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    ports:
+      - 3333:3333
+    depends_on:
+      - postgres
+    networks:
+      - expressjs-simple-api
+
 volumes:
   expressjs-simple-api-pg-data:
 
