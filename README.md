@@ -111,7 +111,7 @@ cp .env.example .env
 docker-compose up -d
 
 # View logs
-docker-compose logs -f app
+docker-compose logs -f expressjs-simple-api-app
 
 # Stop all services
 docker-compose down
