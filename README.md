@@ -2,6 +2,16 @@
 
 Simple REST API built with ExpressJS, TypeScript, and Prisma ORM.
 
+## 🚀 Quick Links
+
+### Live Demo
+
+🔗 **API URL**: [https://expressjs-simple-api.up.railway.app](https://expressjs-simple-api.up.railway.app)
+
+### Postman Collection
+
+📚 **Documentation**: [View Postman Collection](https://www.postman.com/apronny/workspace/public/collection/18814316-cedd3cca-a708-4e36-b0b4-897bc9d47eab?action=share&source=copy-link&creator=18814316)
+
 ## Tech Stack
 
 - **Node.js** (v22)
@@ -22,20 +32,46 @@ Simple REST API built with ExpressJS, TypeScript, and Prisma ORM.
 ## Project Structure
 
 ```
-├── src/
-│   ├── application/    # App configuration & database
-│   ├── config/         # Environment configuration
-│   ├── controller/     # Request handlers
-│   ├── error/          # Error handling
-│   ├── middleware/     # Express middlewares
-│   ├── schema/         # TypeScript types & schemas
-│   ├── service/        # Business logic
-│   ├── validation/     # Request validation
-│   └── main.ts         # Application entry point
-├── prisma/
-│   ├── migrations/     # Database migrations
-│   └── schema.prisma   # Database schema
-└── docker-compose.yaml # Docker configuration
+expressjs-simple-api/
+├── src/                    # Source code directory
+│   ├── application/        # Application setup
+│   │   ├── app.ts         # Express app configuration
+│   │   └── database.ts    # Prisma client instance
+│   ├── config/            # Configuration management
+│   │   └── config.ts      # Environment variables config
+│   ├── controller/        # HTTP request handlers
+│   │   ├── department.controller.ts
+│   │   └── user.controller.ts
+│   ├── error/             # Error handling utilities
+│   │   └── response.error.ts
+│   ├── middleware/        # Express middleware
+│   │   └── error.middleware.ts
+│   ├── route/             # API routes definition
+│   │   └── v1/           # Version 1 API routes
+│   │       ├── index.ts
+│   │       ├── departments.ts
+│   │       └── users.ts
+│   ├── schema/            # TypeScript types & response schemas
+│   │   ├── department.schema.ts
+│   │   └── user.schema.ts
+│   ├── service/           # Business logic layer
+│   │   ├── department.service.ts
+│   │   └── user.service.ts
+│   ├── validation/        # Request validation schemas
+│   │   ├── department.validation.ts
+│   │   ├── user.validation.ts
+│   │   └── validation.ts
+│   └── main.ts            # Application entry point
+├── prisma/                # Database ORM
+│   ├── migrations/        # Database migration files
+│   └── schema.prisma      # Database schema definition
+├── dist/                  # Compiled JavaScript (generated)
+├── docker-compose.yaml    # Docker services configuration
+├── Dockerfile            # Container build instructions
+├── package.json          # Dependencies & scripts
+├── tsconfig.json         # TypeScript configuration
+├── eslint.config.ts      # ESLint configuration
+└── README.md             # Project documentation
 ```
 
 ## Installation & Running
@@ -166,36 +202,3 @@ The application uses Prisma ORM with PostgreSQL. Main entities:
 - **User** - Application users with authentication
 - **Department** - Organizational departments
 - **Address** - User addresses
-
-## Development Notes
-
-- Uses ESM modules (type: "module")
-- TypeScript strict mode enabled
-- Prisma client auto-generated in `src/generated/`
-- Password hashing with bcrypt (10 rounds)
-- Request validation with Zod schemas
-
-## Testing the API
-
-### Create Department
-
-```bash
-curl -X POST http://localhost:3333/departments \
-  -H "Content-Type: application/json" \
-  -d '{"name": "Engineering"}'
-```
-
-### Register User
-
-```bash
-curl -X POST http://localhost:3333/users \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "John Doe",
-    "email": "john@example.com",
-    "phone": "0812345678901",
-    "password": "password123",
-    "status": "ACTIVE",
-    "departmentId": "<department-uuid>"
-  }'
-```
