@@ -4,9 +4,9 @@ import { ResponseError } from "../error/response.error.js";
 
 export const ErrorMiddleware = (
   err: Error,
-  req: Request,
+  _req: Request,
   res: Response,
-  next: NextFunction
+  _next: NextFunction
 ) => {
   if (err instanceof ZodError) {
     return res
